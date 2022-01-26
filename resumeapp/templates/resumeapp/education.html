@@ -1,0 +1,21 @@
+{% extends 'main.html' %}
+{% block content %}
+{% load static%}
+<link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{% static 'css/template1.css'%}">
+<a href="{% url 'create-edu'%}" class = "btn btn-primary">Add Education</a>
+<a href = "{% url 'create' %}" class = " btn btn-primary">Go Back</a>
+<h3>Education: </h3>
+
+<div>
+    {% for edu in edu %}
+    <h4>School/College Name: {{edu.college_name}} </h4>
+    <p>location: {{edu.college_location}}</p>
+    <p>Join : {{edu.join_date}}</p>
+    <p>Pass out :  {{edu.leave_date}}</p>
+    <a href="{% url 'edit-edu' edu.id%}" class = "btn btn-primary">Edit</a>
+    <a href="{% url 'delete-edu' edu.id%}" class = "btn btn-primary">Delete</a>
+    <br>
+    {% endfor %}
+</div>
+{% endblock content %}

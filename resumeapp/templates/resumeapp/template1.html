@@ -1,0 +1,232 @@
+{%extends 'main.html'%}
+{%block content%}
+{% load static %}
+<link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{% static 'css/template1.css'%}">
+{% if page == "generate" %}
+<div class="container">
+  <div class="header">
+    <div class="full-name">
+      <span class="first-name">{{resume.name}}</span> 
+      
+    </div>
+    <div class="contact-info">
+      <span class="email">Email: </span>
+      <span class="email-val">{{resume.email}}</span>
+      <span class="separator"></span>
+      <span class="phone">Phone: </span>
+      <span class="phone-val">{{resume.phone_no}}</span>
+    </div>
+    
+    <div class="about">
+      <span class="position">{{resume.developer_role}} </span>
+      <span class="desc">
+        {{resume.bio}} 
+      </span>
+    </div>
+  </div>
+   <div class="details">
+    <div class="section">
+      <div class="section__title">Experience</div>
+      <div class="section__list">
+        {% for experience in experience%}
+        <div class="section__list-item">
+          <div class="left">
+            <div class="name">{{experience.company_name}}</div>
+            <div class="addr">{{experience.company_location}}</div>
+            <div class="duration"> {{experience.join_date|date:'M,Y'}} - {{experience.leave_date|date:'M,Y'}}</div>
+          </div>
+          <div class="right">
+            <div class="name">{{experience.role_in_company}}</div>
+            
+          </div>
+        </div>
+        {% endfor %}
+                
+
+      </div>
+    </div>
+    <div class="section">
+      <div class="section__title">Education</div>
+      <div class="section__list">
+        {% for education in education%}
+        <div class="section__list-item">
+          <div class="left">
+            <div class="name">{{education.college_name}}</div>
+            <div class="addr">{{education.college_location}}</div>
+            <div class="duration">{{education.join_date|date:'M,Y'}} - {{education.leave_date|date:'M,Y'}}</div>
+  
+          </div>
+        </div>
+        
+
+        {% endfor %}
+      </div>
+  </div>
+     <div class="section">
+      <div class="section__title">Projects</div> 
+       <div class="section__list">
+         {% for project in project %}
+         <div class="section__list-item">
+           <div class="name">{{project.title}}</div>
+           <div class="text">{{project.description}}</div>
+         </div>
+         {% endfor %}
+         
+       </div>
+    </div>
+     <div class="section">
+       <div class="section__title">Skills</div>
+       <div class="skills">
+         <div class="skills__item">
+           <div class="left">
+             <div class="name">
+             {{skill.skill}}
+             </div>
+          </div>
+
+          
+         </div>
+         
+       </div>
+       
+     <div class="section">
+     <div class="section__title">
+       Interests
+       </div>
+       <div class="section__list">
+         <div class="section__list-item">
+                  {{interest.interest}}
+          </div>
+       </div>
+     </div>
+     </div>
+  </div>
+</div>
+<a href = "{% url 'createpdf'%}" class = "btn btn-primary" style = "margin-left: 20px; margin-bottom: 20px;">Create PDF</a>
+{% else %}
+<div class="container">
+  <div class="header">
+    <div class="full-name">
+      <span class="first-name">John</span> 
+      <span class="last-name">Doe</span>
+    </div>
+    <div class="contact-info">
+      <span class="email">Email: </span>
+      <span class="email-val">john.doe@gmail.com</span>
+      <span class="separator"></span>
+      <span class="phone">Phone: </span>
+      <span class="phone-val">111-222-3333</span>
+    </div>
+    
+    <div class="about">
+      <span class="position">Front-End Developer </span>
+      <span class="desc">
+        I am a front-end developer with more than 3 years of experience writing html, css, and js. I'm motivated, result-focused and seeking a successful team-oriented company with opportunity to grow. 
+      </span>
+    </div>
+  </div>
+   <div class="details">
+    <div class="section">
+      <div class="section__title">Experience</div>
+      <div class="section__list">
+        <div class="section__list-item">
+          <div class="left">
+            <div class="name">KlowdBox</div>
+            <div class="addr">San Fr, CA</div>
+            <div class="duration">Jan 2011 - Feb 2015</div>
+          </div>
+          <div class="right">
+            <div class="name">Fr developer</div>
+            
+          </div>
+        </div>
+                <div class="section__list-item">
+          <div class="left">
+            <div class="name">Akount</div>
+            <div class="addr">San Monica, CA</div>
+            <div class="duration">Jan 2011 - Feb 2015</div>
+          </div>
+          <div class="right">
+            <div class="name">Fr developer</div>
+            
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="section">
+      <div class="section__title">Education</div>
+      <div class="section__list">
+        <div class="section__list-item">
+          <div class="left">
+            <div class="name">Sample Institute of technology</div>
+            <div class="addr">San Fr, CA</div>
+            <div class="duration">Jan 2011 - Feb 2015</div>
+          </div>
+        </div>
+        <div class="section__list-item">
+          <div class="left">
+            <div class="name">Akount</div>
+            <div class="addr">San Monica, CA</div>
+            <div class="duration">Jan 2011 - Feb 2015</div>
+          </div>
+  
+        </div>
+
+      </div>
+      
+  </div>
+     <div class="section">
+      <div class="section__title">Projects</div> 
+       <div class="section__list">
+         <div class="section__list-item">
+           <div class="name">DSP</div>
+           <div class="text">I am a front-end developer with more than 3 years of experience writing html, css, and js. I'm motivated, result-focused and seeking a successful team-oriented company with opportunity to grow.</div>
+         </div>
+         
+         <div class="section__list-item">
+                    <div class="name">DSP</div>
+           <div class="text">I am a front-end developer with more than 3 years of experience writing html, css, and js. I'm motivated, result-focused and seeking a successful team-oriented company with opportunity to grow. <a href="/login">link</a>
+           </div>
+         </div>
+       </div>
+    </div>
+     <div class="section">
+       <div class="section__title">Skills</div>
+       <div class="skills">
+         <div class="skills__item">
+           <div class="left">
+             <div class="name">
+             Javascript
+             </div>
+          </div>
+
+          
+         </div>
+         
+       </div>
+       <div class="skills__item">
+           <div class="left"><div class="name">
+             CSS</div></div>
+      
+
+           
+         </div>
+         
+       </div>
+     <div class="section">
+     <div class="section__title">
+       Interests
+       </div>
+       <div class="section__list">
+         <div class="section__list-item">
+                  Football, programming.
+          </div>
+       </div>
+     </div>
+     </div>
+  </div>
+</div>
+{% endif %}
+{% endblock %}

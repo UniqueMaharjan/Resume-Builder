@@ -1,0 +1,39 @@
+{% extends 'main.html' %}
+{% block content %}
+{%load static%}
+<link rel="stylesheet" href="{% static 'css/form.css'%}">
+{% if page == "exp"%}
+<div class="container">
+	<form class="signUp" action = "" method = "POST">
+		{% csrf_token %}
+		<h3>Experience</h3>
+		<p>!!Please Enter Valid Informations!!</br>
+		</p>
+        <input type="text" name = "company_name" placeholder="Enter Your Recent work place name" reqired />
+		<input type="text" name = "company_location" placeholder="Enter Location of work place" reqired />
+		<input type="text" name = "role_in_company" placeholder="Enter role in that company" reqired />
+		<input type="date" name = "join_date" placeholder="Enter Join date in company" reqired />
+		<input type="date" name = "leave_date" placeholder="Enter leave date in company" reqired />
+		<a href = "{{request.META.HTTP_REFERER}}"><button class="form-btn sx log-in" type="button">Go Back</button></a>
+		<button class="form-btn dx" type="submit">Submit</button>
+	</form>
+</div>
+{%else%}
+<div class="container">
+	<form class="signUp" action = "" method = "POST">
+		{% csrf_token %}
+		<h3>Experience</h3>
+		<p>!!Please Enter Valid Informations!!</br>
+		</p>
+        
+			{% for field in form%}
+			<p>{{field.label}}</p>
+			{{field}}
+			{% endfor %}
+		
+		<a href = "{{request.META.HTTP_REFERER}}"><button class="form-btn sx log-in" type="button">Go Back</button></a>
+		<button class="form-btn dx" type="submit">Submit</button>
+	</form>
+</div>
+{% endif %}
+{% endblock content %}

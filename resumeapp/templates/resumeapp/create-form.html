@@ -1,0 +1,67 @@
+{% extends 'main.html' %}
+{% block content %}
+{%load static%}
+<link rel="stylesheet" href="{% static 'css/form.css'%}">
+<div class="container">
+	{% if page == "create-info" %}
+	<form class="signUp" method="POST" action="">
+		<a href = "{% url 'info' %}" class = 'info'><button type = "button" > View Saved Info</button></a>
+		{% csrf_token %}
+		<h3>Build RESUME!</h3>
+		<p>!!Please Enter Valid Informations!!</br>
+		</p>
+        <p>Introduction:</p>
+		<input class="w100" type="text" placeholder="Enter Full name" name = "name" reqired/>
+		<input type="email" placeholder="Enter Valid Email" name = "email" reqired />
+		<input type="tel" placeholder="Enter Valid Phone number(eg.+9779818181818)" name = "phone" reqired />
+		<input type="text" placeholder="Enter your position role(eg.Frontend developer,etc)" name = "role" reqired />
+		<input type="text" placeholder="Describe about yourself" name = "bio" reqired />
+		<p>Skills:</p>
+		<input type="text" placeholder="What are your skills (eg: Python,java,etc)" name = "skill" reqired />
+        <p>Interests:</p>
+		<input type="text" placeholder="What are your interests in (eg: singing, coding,etc)" name = "interest" reqired />
+		<br>
+		<p>Add below fields by clicking in each one of them:</p>
+		<a href = "{% url 'experience'%}">Experience</a>|
+		<a href = "{% url 'education' %}">Education</a>|
+		<a href = "{% url 'project' %}">Projects</a>
+		<button class="form-btn sx log-in" type="submit">Save</button>
+		<a href = "{% url 'generate' %}"><button class="form-btn dx" type="button">Generate(recetly saved one will be shown)</button></a>
+	</form>
+	<br>
+	{% elif page == "info" %}
+	<p>Full name = {{user.name}}</p>
+	<p>Email = {{user.email}}</p>
+	<p>Phone no. = {{user.phone_no}}</p>
+	<p>Position = {{user.developer_role}}</p>
+	<p>Bio:</p>
+	<p><span>{{user.bio}}</span></p>
+	<p>Skill:</p>
+	<p>{{skill.skill}}</p>
+	<p>Interest: </p>
+	<p>{{interest.interest}}</p>
+
+	<a href = "{% url 'edit-skill' %}" > Edit Skills </a>|
+	<a href = "{% url 'edit-interest' %}" > Edit interest </a>|
+	<a href = "#" > Delete </a>
+	
+	{% else  %}
+	<form class="signUp" method="POST" action="">
+		{% csrf_token %}
+		<h3>Build RESUME!</h3>
+		<p>!!Please Enter Valid Informations!!</br>
+		</p>
+        <p>Introduction:</p>
+		{% for user_field in form1 %}
+			<p>{{user_field.label}}</p>
+			{{user_field}}
+		{% endfor %}
+		
+		
+		<br>
+		<button class="form-btn sx log-in" type="submit">Save</button>
+		<a href = "request.META.HTTP_REFERER"><button class="form-btn dx" type="button">Go Back</button></a>
+	</form>
+	{% endif %}
+</div>
+{% endblock content %}

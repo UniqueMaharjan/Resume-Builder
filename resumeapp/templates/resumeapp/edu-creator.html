@@ -1,0 +1,38 @@
+{% extends 'main.html' %}
+{% block content %}
+{%load static%}
+<link rel="stylesheet" href="{% static 'css/form.css'%}">
+{% if page == "edu"%}
+<div class="container">
+	<form class="signUp" action = "" method = "POST">
+		{% csrf_token %}
+		<h3>Education</h3>
+		<p>!!Please Enter Valid Informations!!</br>
+		</p>
+        <input type="text" name = "college_name" placeholder="Enter Your School/College Name" reqired />
+		<input type="text" name = "college_location" placeholder="Enter location of School/College" reqired />
+		<input type="date" name = "join_date" placeholder="Enter Join date " required />
+		<input type="date" name = "leave_date"placeholder="Enter pass out date from school" reqired />
+		<a href = "{{request.META.HTTP_REFERER}}"><button class="form-btn sx log-in" type="button">Go Back</button></a>
+		<button class="form-btn dx" type="submit">Submit</button>
+	</form>
+</div>
+{%else%}
+<div class="container">
+	<form class="signUp" action = "" method = "POST">
+		{% csrf_token %}
+		<h3>Education</h3>
+		<p>!!Please Enter Valid Informations!!</br>
+		</p>
+        
+			{% for field in form%}
+			<p>{{field.label}}</p>
+			{{field}}
+			{% endfor %}
+		
+		<a href = "{{request.META.HTTP_REFERER}}"><button class="form-btn sx log-in" type="button">Go Back</button></a>
+		<button class="form-btn dx" type="submit">Submit</button>
+	</form>
+</div>
+{% endif %}
+{% endblock content %}

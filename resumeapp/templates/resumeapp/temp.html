@@ -1,0 +1,18 @@
+{%extends 'main.html' %}
+{% block content%}
+{%load static%}
+<div class="row">
+
+  <div class="col-lg-4">
+    <img class="thumbnail" src="{% static 'images/template2.PNG'%}" alt="" />
+    <div class="box-element product">
+      <h6><strong>Demo Template</strong></h6>
+      <hr />
+      <a class="btn btn-outline-success" href="{% url 'template1'%}">View</a>
+    </div>
+  </div>
+  </div>
+
+</div>
+
+{% endblock content%}

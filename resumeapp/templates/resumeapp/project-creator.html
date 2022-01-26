@@ -1,0 +1,36 @@
+{% extends 'main.html' %}
+{% block content %}
+{%load static%}
+<link rel="stylesheet" href="{% static 'css/form.css'%}">
+{% if page == "project"%}
+<div class="container">
+	<form class="signUp" action = "" method = "POST">
+		{% csrf_token %}
+		<h3>Project</h3>
+		<p>!!Please Enter Valid Informations!!</br>
+		</p>
+        <input type="text" name = "title" placeholder="Name of your Project" reqired />
+		<input type="text" name = "description" placeholder="Give a Brief Desciption about your project" reqired />
+		<a href = "{{request.META.HTTP_REFERER}}"><button class="form-btn sx log-in" type="button">Go Back</button></a>
+		<button class="form-btn dx" type="submit">Submit</button>
+	</form>
+</div>
+{%else%}
+<div class="container">
+	<form class="signUp" action = "" method = "POST">
+		{% csrf_token %}
+		<h3>Project</h3>
+		<p>!!Please Enter Valid Informations!!</br>
+		</p>
+        
+			{% for field in form%}
+			<p>{{field.label}}</p>
+			{{field}}
+			{% endfor %}
+		
+		<a href = "{{request.META.HTTP_REFERER}}"><button class="form-btn sx log-in" type="button">Go Back</button></a>
+		<button class="form-btn dx" type="submit">Submit</button>
+	</form>
+</div>
+{% endif %}
+{% endblock content %}

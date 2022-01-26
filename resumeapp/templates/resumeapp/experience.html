@@ -1,0 +1,21 @@
+{% extends 'main.html' %}
+{% block content %}
+{% load static%}
+<link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{% static 'css/template1.css'%}">
+<a href="{% url 'create-exp'%}" class = "btn btn-primary">Add Experience</a>
+<a href = "{% url 'create' %}" class = " btn btn-primary">Go Back</a>
+<h3>Experience: </h3>
+
+<div>
+    {%for exp in exp%}
+    <h4>Company Name:{{exp.company_name}} </h4>
+    <p>location:{{exp.company_location}}</p>
+    <p>from {{exp.join_date}} - to{{exp.leave_date}}</p>
+    <p>Role : {{exp.role_in_company}} </p>
+    <a href="{% url 'edit-exp' exp.id%}" class = "btn btn-primary">Edit</a>
+    <a href="{% url 'delete-exp' exp.id%}" class = "btn btn-primary">Delete</a>
+    <br>
+    {% endfor %}
+</div>
+{% endblock content %}
